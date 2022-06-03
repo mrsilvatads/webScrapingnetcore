@@ -6,7 +6,13 @@ namespace WebScraping
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting web scraping...");
+
+            var ibovespaWebScraping = new IbovespaWebScraping();
+            var ibovespaInfo = ibovespaWebScraping.GetIbovespaInfo();
+            var filePath = CSVHelper.SaveIbovespa(ibovespaInfo);
+            Console.WriteLine($"Results in {filePath}");
+
         }
     }
 }
