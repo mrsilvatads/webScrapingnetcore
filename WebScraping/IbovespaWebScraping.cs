@@ -1,9 +1,6 @@
 ﻿using HtmlAgilityPack;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebScraping.DTOs;
 
 namespace WebScraping
@@ -24,6 +21,14 @@ namespace WebScraping
                        .Where(tr => tr.Elements("td").Count() > 1)
                        .Select(tr => tr.Elements("td").Select(td => td.InnerText.Trim()).ToList())
                        .ToList();
+
+            List<string> ids = new List<string>();
+
+            var teste = doc.DocumentNode.SelectNodes("//div[@id='ticker-carroussel']/a");
+            //foreach (XmlNode node in teste )
+            //{
+            //    ids.Add(node.InnerText);
+            //}
             var lista = new List<IbovespaInfoDTO>();
             lista = preencheLista(table);
             var ibovespaTotalPoints = int.Parse(ibovespaPointsNode[0].InnerText.Replace(".",""));
